@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-    Name: des_module.py
+    Name: des_module_generated_key.py
     Author: 
     Created:
     Purpose: DES encryption

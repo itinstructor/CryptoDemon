@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-    Name: des_shared_key.py
+    Name: des_module_shared_key.py
     Author: 
     Created:
     Purpose: DES encryption
