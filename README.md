@@ -9,9 +9,9 @@ Python Cryptography Demonstration Program
 
 ### Cryptography Modules
 
-- (10/02/2023) des3_class.py uses 3DES to encrypt and decrypt data with or without a user input shared key
-- (09/28/2023) des3_class_shared_key.py uses 3DES to encrypt and decrypt incoming plain text with user shared key
-- (09/28/2023) des3_generated_key.py uses 3DES to encrypt and decrypt incoming plain text with random key
+- (10/02/2023) **des3_class.py** uses 3DES to encrypt and decrypt data with or without a user input shared key
+- (09/28/2023) **des3_class_shared_key.py** uses 3DES to encrypt and decrypt incoming plain text with user shared key
+- (09/28/2023) **des3_generated_key.py** uses 3DES to encrypt and decrypt incoming plain text with random key
 
 ### DES Encryption
 
