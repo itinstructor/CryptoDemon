@@ -15,13 +15,14 @@ Python Cryptography Demonstration Program
 
 ### DES Encryption
 
-**DES** The Data Encryption Standard (DES) is a symmetric-key block cipher used in the field of cryptography and information security. It was developed in the 1970s and became a federal standard in the United States. DES operates on 64-bit blocks of data and uses a 56-bit encryption key.
+The Data Encryption Standard (DES) is a symmetric-key block cipher used in the field of cryptography and information security. It was developed in the 1970s and became a federal standard in the United States. DES operates on 64-bit blocks of data and uses a 56-bit encryption key.
 
 DES is known for its historical significance as one of the earliest widely adopted encryption standards. It is no longer considered secure for modern applications due to advances in computing power. Its 56-bit key length makes it vulnerable to brute-force attacks, and it has been replaced by more robust encryption algorithms like Triple DES (3DES) and the Advanced Encryption Standard (AES).
 
 DES uses a 56 bit key. The initial key consists of 64 bits (8 bytes). Before the DES process even starts, every 8th bit of the key is discarded to produce a 56-bit key. DES uses an 8 byte block cipher. Data is encrypted 64 bits (8 bytes) at a time and must be padded to increments of 8 bytes.
 
-**3DES** Triple Data Encryption Standard (3DES) is a symmetric-key block cipher used in information security and cryptography. It operates on 64-bit blocks of data and uses a key length of either 128, 192, or 256 bits. 3DES applies the Data Encryption Standard (DES) algorithm three times consecutively to each data block, hence the name "triple."
+### 3DES Encryption
+Triple Data Encryption Standard (3DES) is a symmetric-key block cipher used in information security and cryptography. It operates on 64-bit blocks of data and uses a key length of either 128, 192, or 256 bits. 3DES applies the DES algorithm three times consecutively to each data block, hence the name "triple."
 
 Each block goes through an encryption-decryption-encryption process with three different keys derived from the original key. This triple application of DES significantly increases the security of the data compared to single DES.
 
