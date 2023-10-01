@@ -14,6 +14,7 @@
 """
 # pip install pycryptodome
 from Crypto.Cipher import DES3
+from Crypto.Random import get_random_bytes
 # Import hashlib for secure key derivation from user shared key
 import hashlib
 
@@ -25,22 +26,33 @@ class DES3Class:
 
     def encrypt(self):
         """Encrypt plain text with 3DES"""
-        # Triple DES (3DES) requires an 24-byte key,
-        # Pad user entered shared key to 24 bytes
-        # Use SHA-256 hash to derive a 24-byte key
-        # from the user-provided key
+        if self.shared_key == "":
+            # If the user does not enter a shared key
+            # Create a random 3DES key (must be 24 bytes)
+            # from pycryptodome library
+            self.key = get_random_bytes(24)
+            # Create a DES cipher object using the key
+            # and the Electronic Codebook (ECB) mode.
+            self.cipher = DES3.new(self.key, DES3.MODE_ECB)
 
-        # Create a hash of the user-provided key using SHA-256
-        hashed_key = hashlib.sha256(self.shared_key.encode())
-        hashed_key_bytes = hashed_key.digest()
+        else:
+            # If the user enters a shared key
+            # Triple DES (3DES) requires an 24-byte key,
+            # Pad user entered shared key to 24 bytes
+            # Use SHA-256 hash to derive a 24-byte key
+            # from the user-provided key
 
-        # Take the first 24 bytes of the hash to
-        # create a valid 24-byte 3DES key
-        self.hashed_key_bytes = hashed_key_bytes[:24]
+            # Create a hash of the user-provided key using SHA-256
+            hashed_key = hashlib.sha256(self.shared_key.encode())
+            hashed_key_bytes = hashed_key.digest()
 
-        # Create a DES cipher object with the derived key
-        # in ECB (Electronic Codebook) mode
-        self.cipher = DES3.new(self.hashed_key_bytes, DES3.MODE_ECB)
+            # Slice the first 24 bytes of the hash to
+            # create a valid 24-byte 3DES key
+            self.key = hashed_key_bytes[:24]
+
+            # Create a DES cipher object with the derived key
+            # in ECB (Electronic Codebook) mode
+            self.cipher = DES3.new(self.key, DES3.MODE_ECB)
 
         # Convert (encode) message string to bytes
         message_bytes = self.plain_text.encode()
@@ -79,7 +91,7 @@ def main():
 
     # Print results
     print(f"  Original Text: {des3.plain_text}")
-    print(f"     Shared Key: {des3.hashed_key_bytes.hex()}")
+    print(f"     Shared Key: {des3.key.hex()}")
     print(f" Encrypted Data: {des3.encrypted_data.hex()}")
     print(f" Decrypted Text: {des3.decrypted_data} ")
 
