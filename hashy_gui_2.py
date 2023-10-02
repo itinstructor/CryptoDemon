@@ -55,9 +55,9 @@ class HashCalculatorApp():
         self.text_source_combo.grid(row=0, column=1, sticky="w")
 
         # Create and pack an input label and entry for entering text
-        self.input_label = tk.Label(self.root, text="Enter Text:")
-        self.input_label.grid(row=1, column=0, sticky="w")
-        self.input_text = tk.Entry(self.root)
+        self.lbl_input_label = tk.Label(self.root, text="Enter Text:")
+        self.lbl_input_label.grid(row=1, column=0, sticky="w")
+        self.input_text = tk.Text(self.root,width=44, height=4)
         self.input_text.grid(row=1, column=1, sticky="w")
 
         # Create and pack an entry for specifying a file path
@@ -131,7 +131,7 @@ class HashCalculatorApp():
 
         # Depending on the selected source, retrieve the input text
         if text_source == "User Entry":
-            self.text = self.input_text.get()
+            self.text = self.input_text.get(1.0, tk.END)
         elif text_source == "From File":
             file_path = self.file_path_entry.get()
             try:
@@ -217,7 +217,7 @@ class HashCalculatorApp():
 
     # ---------------------------- OPEN TEXT FILE -------------------------#
     def open_text_file(self):
-        """Function to open a text file"""
+        """Open a text file"""
         # Prompt the user to choose a text file to open
         file_path = filedialog.askopenfilename(
             filetypes=[("Text files", "*.txt")])
