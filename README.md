@@ -36,7 +36,7 @@ Published as a FIPS 197 standard in 2001, AES was originally meant to be an alte
 ### GUI
 
 <p>
-<img alt="Hashy GUI V2" src="img/hashy_2.png" width="600">
+<img alt="Hashy GUI V2" src="img/hashy_2.png" width="800">
 </p>
 
 ### About Me
