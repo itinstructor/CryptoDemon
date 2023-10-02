@@ -5,18 +5,18 @@ import java.security.*;
 import java.util.*;
 import java.io.*;
 
-public class HashGeneratorApp {
+public class HashyApp {
     private JFrame frame;
     private JPanel panel;
     private JTextArea inputTextArea;
     private JButton calculateButton;
     private JButton saveButton;
     private JComboBox<String> inputSourceComboBox;
-    private Map<String, JLabel> hashLabels; // To store hash labels
+    private Map<String, JLabel> hashLabels;
     private JCheckBox[] hashCheckboxes;
-    private String generatedHashes; // To store generated hashes
+    private String generatedHashes;
 
-    public HashGeneratorApp() {
+    public HashyApp() {
         // Create the main frame and panel
         frame = new JFrame("Hash Generator");
         panel = new JPanel(new BorderLayout());
@@ -209,7 +209,7 @@ public class HashGeneratorApp {
     public static void main(String[] args) {
         SwingUtilities.invokeLater(new Runnable() {
             public void run() {
-                new HashGeneratorApp();
+                new HashyApp();
             }
         });
     }
