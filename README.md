@@ -33,6 +33,12 @@ Triple DES was originally meant to be used until 2030 to give everyone plenty of
 
 Published as a FIPS 197 standard in 2001, AES was originally meant to be an alternative to Triple DES until 2030 to give everyone plenty of time to transition to AES. Due to advances in computing power, NIST deprecated 3DES in 2023.
 
+### GUI
+
+<p>
+<img alt="Hashy GUI V2" src="img/hashy_2.png" width="600">
+</p>
+
 ### About Me
 I am an Information Technology Instructor at [Western Nebraska Community College](https://www.wncc.edu). I teach Information Technology, CyberSecurity and Computer Science. Best job ever!
 
