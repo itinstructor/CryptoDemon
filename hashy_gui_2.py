@@ -17,7 +17,7 @@ class HashCalculatorApp():
         self.root = tk.Tk()
         # Set the title of the window
         self.root.title("Hashy Hash Calculator")
-        self.root.geometry("650x650+400+50")
+        self.root.geometry("950x650+100+50")
 
         # Initialize a variable to store the input text
         self.text = ""
@@ -26,16 +26,16 @@ class HashCalculatorApp():
         self.root.mainloop()
 
 # ---------------------------- COMPUTE HASHES -----------------------------#
-    def compute_hashes(self):
+    def compute_hashes(self, *args):
         """Compute all hashes"""
         # Get the selected text source (User Entry or From File)
         text_source = self.text_source_combo.get()
 
         # Depending on the selected source, retrieve the input text
         if text_source == "User Entry":
-            self.text = self.input_text.get(1.0, tk.END)
+            self.text = self.txt_input.get(1.0, tk.END)
         elif text_source == "From File":
-            file_path = self.file_path_entry.get()
+            file_path = self.entry_file_path.get()
             try:
                 # Attempt to open and read text from the specified file
                 with open(file_path, 'r') as file:
@@ -123,11 +123,12 @@ class HashCalculatorApp():
             filetypes=[("Text files", "*.txt")])
         if file_path:
             # Update the file path entry field with the chosen file path
-            self.file_path_entry.delete(0, tk.END)
-            self.file_path_entry.insert(0, file_path)
+            self.entry_file_path.delete(0, tk.END)
+            self.entry_file_path.insert(0, file_path)
 
 # ---------------------------- CREATE FRAMES ------------------------------#
     def create_frames(self):
+        """Create frames"""
         self.entry_frame = tk.LabelFrame(
             self.root, text="Entry",
             relief=tk.GROOVE)
@@ -149,9 +150,11 @@ class HashCalculatorApp():
 
 # ---------------------------- CREATE WIDGETS -----------------------------#
     def create_widgets(self):
+        """Create widgets"""
         # Create and pack a combo box for selecting
         # the text source (User Entry or From File)
-        self.lbl_text_source = tk.Label(self.entry_frame, text="Text Source:")
+        self.lbl_text_source = tk.Label(
+            self.entry_frame, text="Text Source:")
         self.lbl_text_source.grid(row=0, column=0, sticky="w")
         self.text_source_combo = ttk.Combobox(
             self.entry_frame,
@@ -163,21 +166,23 @@ class HashCalculatorApp():
         self.text_source_combo.grid(row=0, column=1, sticky="w")
 
         # Create and pack an input label and entry for entering text
-        self.lbl_input_label = tk.Label(self.entry_frame, text="Enter Text:")
-        self.lbl_input_label.grid(row=1, column=0, sticky="w")
-        self.input_text = tk.Text(self.entry_frame, width=44, height=4)
-        self.input_text.grid(row=1, column=1, sticky="w")
+        self.lbl_input = tk.Label(self.entry_frame, text="Enter Text:")
+        self.lbl_input.grid(row=1, column=0, sticky="w")
+        self.txt_input = tk.Text(self.entry_frame, width=44, height=4)
+        self.txt_input.focus_set()
+        self.txt_input.grid(row=1, column=1, sticky="w")
 
         # Create and pack an entry for specifying a file path
-        self.file_path_label = tk.Label(self.entry_frame, text="File Path:")
-        self.file_path_label.grid(row=2, column=0, sticky="w")
-        self.file_path_entry = tk.Entry(self.entry_frame)
-        self.file_path_entry.grid(row=2, column=1, sticky="w")
+        self.lbl_file_path = tk.Label(self.entry_frame, text="File Path:")
+        self.lbl_file_path.grid(row=2, column=0, sticky="w")
+        self.entry_file_path = tk.Entry(self.entry_frame)
+        self.entry_file_path.grid(row=2, column=1, sticky="w")
 
         # Create and pack a button for opening a text file
-        self.open_file_button = tk.Button(
-            self.entry_frame, text="Open Text File", command=self.open_text_file)
-        self.open_file_button.grid(row=2, column=2)
+        self.btn_open_file = tk.Button(
+            self.entry_frame,
+            text="Open Text File", command=self.open_text_file)
+        self.btn_open_file.grid(row=2, column=2)
 
         # Create dictionaries to store checkboxes
         # and result labels for various hash algorithms
@@ -217,12 +222,17 @@ class HashCalculatorApp():
 
         # Create a button for computing hashes and place it on the grid
         self.compute_button = tk.Button(
-            self.command_frame, text="Compute Hashes", command=self.compute_hashes)
+            self.command_frame,
+            text="Compute Hashes", command=self.compute_hashes
+        )
         self.compute_button.grid(row=0, column=0)
 
-        # Create a button for saving hashes to a file and place it on the grid
+        # Create button for saving hashes to a file
         self.save_button = tk.Button(
-            self.command_frame, text="Save Hashes to File", command=self.save_hashes)
+            self.command_frame,
+            text="Save Hashes to File",
+            command=self.save_hashes
+        )
         self.save_button.grid(row=0, column=1)
 
         # Set padding between frames and the window
@@ -238,6 +248,10 @@ class HashCalculatorApp():
             widget.grid_configure(padx=1, pady=1, ipadx=1, ipady=1)
         for widget in self.command_frame.winfo_children():
             widget.grid_configure(padx=5, pady=5, ipadx=2, ipady=2)
+
+        # The enter key will activate the calculate method
+        self.root.bind('<Return>', self.compute_hashes)
+        self.root.bind("<KP_Enter>", self.compute_hashes)
 
 
 hashy = HashCalculatorApp()
