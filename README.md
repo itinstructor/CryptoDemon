@@ -7,8 +7,7 @@ Python Cryptography Demonstration Program
 
 ```pip install pycryptodome```
 
-### Cryptography Modules and Hashy
-- (10/02/2023) **hashy_gui_2.py** is a Python Tkinter that takes user input or a text file, displays several hash algorhythm results.
+### Cryptography Modules
 - (10/02/2023) **des3_class.py** uses 3DES to encrypt and decrypt data with or without a user input shared key
 - (09/28/2023) **des3_class_shared_key.py** uses 3DES to encrypt and decrypt incoming plain text with user shared key
 - (09/28/2023) **des3_generated_key.py** uses 3DES to encrypt and decrypt incoming plain text with random key
@@ -34,11 +33,6 @@ Triple DES was originally meant to be used until 2030 to give everyone plenty of
 Published as a FIPS 197 standard in 2001, AES was originally meant to be an alternative to Triple DES until 2030 to give everyone plenty of time to transition to AES. Due to advances in computing power, NIST deprecated 3DES in 2023.
 
 ### GUI
-
-**Hashy GUI V2**
-<p>
-<img alt="Hashy GUI V2" src="img/hashy_2.png" width="800">
-</p>
 
 ### About Me
 I am an Information Technology Instructor at [Western Nebraska Community College](https://www.wncc.edu). I teach Information Technology, CyberSecurity and Computer Science. Best job ever!
