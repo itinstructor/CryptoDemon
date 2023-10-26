@@ -1,10 +1,16 @@
+#!/usr/bin/env python3
+"""
+    Name: crypto_demon_1_AES.py
+    Author: 
+    Created:
+    Purpose: Encrypt and decrypt messages using AES
+"""
 # Import the tkinter library for creating the GUI
 import tkinter as tk
 # Import the cryptography library for encryption.
 from cryptography.fernet import Fernet
 
 
-# Create a class called EncryptionApp to manage the application.
 class EncryptionApp:
     def __init__(self, root):
         # Initialize the key variable to None.
