@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-    Name: des3_class_shared_key.py
+    Name: des3_class.py
     Author: 
     Created: 09/29/2023
     Purpose: 3DES encryption demonstration using user input shared key
@@ -31,6 +31,7 @@ class DES3Class:
             # Create a random 3DES key (must be 24 bytes)
             # from pycryptodome library
             self.key = get_random_bytes(24)
+            
             # Create a DES cipher object using the key
             # and the Electronic Codebook (ECB) mode.
             self.cipher = DES3.new(self.key, DES3.MODE_ECB)

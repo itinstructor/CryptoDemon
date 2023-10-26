@@ -3,7 +3,7 @@
     Name: des_class.py
     Author: 
     Created: 09/29/2023
-    Purpose: 3DES encryption demonstration using user input shared key
+    Purpose: DES encryption demonstration using user input shared key
     3DES is considered a weak encryption algorithm and is not recommended
     for secure applications. More modern encryption algorithms like AES
     should be used for security-critical applications.
@@ -24,30 +24,32 @@ class DESClass:
         self.plain_text = plain_text
         self.shared_key = shared_key
 
+# ----------------------------- ENCRYPT DES -------------------------------#
     def encrypt(self):
-        """Encrypt plain text with 3DES"""
+        """Encrypt plain text with DES"""
         if self.shared_key == "":
             # If the user does not enter a shared key
-            # Create a random 3DES key (must be 24 bytes)
+            # Create a random DES key (must be 8 bytes)
             # from pycryptodome library
-            self.key = get_random_bytes(24)
+            self.key = get_random_bytes(8)
+
             # Create a DES cipher object using the key
             # and the Electronic Codebook (ECB) mode.
             self.cipher = DES.new(self.key, DES.MODE_ECB)
 
         else:
             # If the user enters a shared key
-            # Triple DES (3DES) requires an 24-byte key,
-            # Pad user entered shared key to 24 bytes
-            # Use SHA-256 hash to derive a 24-byte key
+            # DES requires an 8-byte key,
+            # Pad user entered shared key to 8 bytes
+            # Use SHA-256 hash to derive a 8-byte key
             # from the user-provided key
 
             # Create a hash of the user-provided key using SHA-256
             hashed_key = hashlib.sha256(self.shared_key.encode())
             hashed_key_bytes = hashed_key.digest()
 
-            # Slice the first 24 bytes of the hash to
-            # create a valid 24-byte 3DES key
+            # Slice the first 8 bytes of the hash to
+            # create a valid 8-byte DES key
             self.key = hashed_key_bytes[:8]
 
             # Create a DES cipher object with the derived key
@@ -56,19 +58,21 @@ class DESClass:
 
         # Convert (encode) message string to bytes
         message_bytes = self.plain_text.encode()
+
         # Ensure that the message length is a multiple
-        # of 8 bytes (required by 3DES)
+        # of 8 bytes (required by DES)
         # Pad the end of the message if needed
         while len(message_bytes) % 8 != 0:
             # Pad the end of the message with spaces if needed
             message_bytes += b' '
 
-        # Use the 3DES cipher object to encrypt the padded message
+        # Use the DES cipher object to encrypt the padded message
         self.encrypted_data = self.cipher.encrypt(message_bytes)
 
+# ----------------------------- DECRYPT DES -------------------------------#
     def decrypt(self):
         """Decrypt DES encrypted data to plain text"""
-        # Use the same 3DES cipher object to decrypt the encrypted message
+        # Use the same DES cipher object to decrypt the encrypted message
         decrypted_data_bytes = self.cipher.decrypt(self.encrypted_data)
 
         # Remove any trailing spaces (padding) from the decrypted message
