@@ -16,7 +16,7 @@ key = get_random_bytes(24)
 cipher = DES3.new(key, DES3.MODE_ECB)
 
 # Message to be encrypted
-message = "Your message to encrypt"
+message = input("Your message to encrypt: ")
 
 """In this example, the initial length of the message may not be 
 a multiple of 8. The while loop will add spaces to the message until
