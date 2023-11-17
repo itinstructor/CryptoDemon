@@ -27,8 +27,8 @@ class DES3Class:
     def encrypt(self):
         """Encrypt plain text with 3DES"""
         if self.shared_key == "":
-            # If the user does not enter a shared key
-            # Create a random 3DES key (must be 24 bytes)
+            # If the user does not enter a shared key,
+            # create a random 3DES key (must be 24 bytes)
             # from pycryptodome library
             self.key = get_random_bytes(24)
             
@@ -57,10 +57,12 @@ class DES3Class:
 
         # Convert (encode) message string to bytes
         message_bytes = self.plain_text.encode()
+        
         # Ensure that the message length is a multiple
         # of 8 bytes (required by 3DES)
         # Pad the end of the message if needed
         while len(message_bytes) % 8 != 0:
+        
             # Pad the end of the message with spaces if needed
             message_bytes += b' '
 
@@ -84,6 +86,7 @@ def main():
     # Get user input for the message and the shared key
     plain_text = input("Text to encrypt: ")
     shared_key = input("Shared key: ")
+    
     # Create object with plain text and shared key input arguments
     des3 = DES3Class(plain_text, shared_key)
 
