@@ -12,6 +12,7 @@
 # pip install pycryptodome
 from Crypto.Cipher import AES
 from Crypto.Random import get_random_bytes
+
 # Import hashlib for secure key derivation from user shared key
 import hashlib
 
@@ -21,6 +22,7 @@ class AESClass:
         self.plain_text = plain_text
         self.shared_key = shared_key
 
+    # ----------------- DECRYPT -------------------------------------------#
     def encrypt(self):
         """Encrypt plain text with 3DES"""
         if self.shared_key == "":
@@ -53,26 +55,28 @@ class AESClass:
 
         # Convert (encode) message string to bytes
         message_bytes = self.plain_text.encode()
+
         # Ensure that the message length is a multiple
         # of 16 bytes (required by AES)
         # Pad the end of the message if needed
         while len(message_bytes) % 16 != 0:
             # Pad the end of the message with spaces if needed
-            message_bytes += b' '
+            message_bytes += b" "
 
         # Use the AES cipher object to encrypt the padded message
         self.encrypted_data = self.cipher.encrypt(message_bytes)
 
+    # ----------------- DECRYPT -------------------------------------------#
     def decrypt(self):
         """Decrypt AES encrypted data to plain text"""
         # Use the same AES cipher object to decrypt the encrypted message
         decrypted_data_bytes = self.cipher.decrypt(self.encrypted_data)
 
         # Remove any trailing spaces (padding) from the decrypted message
-        decrypted_data_bytes = decrypted_data_bytes.rstrip(b' ')
+        decrypted_data_bytes = decrypted_data_bytes.rstrip(b" ")
 
         # Decode bytes to string
-        self.decrypted_data = decrypted_data_bytes.decode('utf-8')
+        self.decrypted_data = decrypted_data_bytes.decode("utf-8")
 
 
 def main():
